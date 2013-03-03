@@ -4,7 +4,7 @@
 
 <head>
     <title>The latest and greatest music player</title>
-    <link rel="stylesheet" path="style.css" />
+    <link rel="stylesheet" src="style.css" />
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <!-- TODO: Modernizr reference -->
     <script src="musicPlayer.js"></script>
@@ -21,7 +21,7 @@
                                 "songs/song5.mp3"
             ];
 
-            $("#thePlayer").musicPlayer( {autoPlay: true, defaultVol: 0.3} , mySongList );
+            $("#thePlayer").musicPlayer( {autoPlay: false, defaultVol: 0.3} , mySongList );
             // Optionally, the function should accept an object containing optional values,
             // such as a boolean "autostart" value, i.e. if the player should start playing
             // immediately etc.
