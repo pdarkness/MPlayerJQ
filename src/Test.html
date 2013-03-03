@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+    <title>The latest and greatest music player</title>
+    <link rel="stylesheet" path="style.css" />
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <!-- TODO: Modernizr reference -->
+    <script src="musicPlayer.js"></script>
+    <script type="text/javascript" >
+
+        $(document).ready( function( ) {
+
+            // Note: this version assumes a JavaScript array of songs, but
+            // the other approach is also acceptable
+            var mySongList = [ "http://knutur.is/musicPlayer/songs/song2.mp3",
+                "http://knutur.is/musicPlayer/songs/song1.mp3"
+            ];
+
+            $("#thePlayer").musicPlayer( {autoPlay: true, defaultVol: 80} , mySongList );
+            // Optionally, the function should accept an object containing optional values,
+            // such as a boolean "autostart" value, i.e. if the player should start playing
+            // immediately etc.
+        });
+
+    </script>
+</head>
+<body>
+<div id="thePlayer"></div> <!-- this element will host the player!! -->
+
+<p>The latest and greatest music player</p>
+
+
+</body>
+</html>
