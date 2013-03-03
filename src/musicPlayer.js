@@ -11,7 +11,7 @@
 
         var pluginOptions = {
             autoPlay: true,
-            defaultVol: 100,
+            defaultVol: 0.2,
             compact: false
         };
 
@@ -22,8 +22,16 @@
                 //hengja á html elementið sem við erum að vinna á
                 var player = $("<audio id='audioPlayer'> "+ songsNow +" <p>Sorry, your browser does not support this</p></audio>");
                 $(this).append( player );
-                var audioElem = document.getElementById("audioPlayer");
+                if(finalOptions.autoPlay === true)
+                    $('#audioPlayer').prop('autoplay', true);
 
+
+                var audioElem = document.getElementById("audioPlayer");
+                audioElem.volume = finalOptions.defaultVol;
+
+
+
+                ///////  PLAY BUTTON /////////
                 var playButton = $("<button id='playButton' value='Play' />");
                 playButton.click( function( ){
                     if (audioElem.paused == false) {
@@ -31,25 +39,36 @@
                     } else {
                         audioElem.play();
                     }
-
                 });
-
-                var volumeButtonPlus = $("<button id='volumePlus' value='what' />");
-                $(this).append( volumeButtonPlus );
-                volumeButtonPlus.click( function ( ){
-                    audioElem.volume += 0.1;
-                })
-                var volumeButtonMinus = $("<button id='volumeMinus' value='lowerThatShit' />");
-                $(this).append( volumeButtonMinus );
-                volumeButtonMinus.click( function( ){
-                    audioElem.volume -= 0.1;
-                })
-
                 $(this).append( playButton );
 
-                player.on("progress", function(e){
-                   // fix this
-                })
+                //////   VOLUME //////
+                var volumeButtonPlus = $("<button id='volumePlus' value='VolUp' />");
+                $(this).append( volumeButtonPlus );
+
+                var volumeButtonMinus = $("<button id='volumeMinus' value='VolDown' />");
+                $(this).append( volumeButtonMinus );
+
+                    volumeButtonMinus.click( function( ){
+                        if (audioElem.volume > 0.1)
+                        audioElem.volume -= 0.1;
+                        console.log(audioElem.volume);
+                    });
+
+                    volumeButtonPlus.click( function ( ){
+                        if (audioElem.volume < 0.9)
+                        audioElem.volume += 0.1;
+                        console.log(audioElem.volume);
+                    });
+
+
+                var progressBar = $("<progress id='progressBar' value='0' max='1' ></progress>");
+                $(this).append(progressBar);
+
+
+                player.on('timeupdate', function() {
+                    $('#progressBar').attr("value", this.currentTime / this.duration);
+                   });
 
 
 
