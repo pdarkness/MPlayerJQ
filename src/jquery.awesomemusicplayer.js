@@ -19,6 +19,7 @@
 
             //Root elements
             var audioElem = new Audio(mySongList[songListIterator]); //<audio> element
+
             var volumeWrapper = $('<div class="volwrapper"></div>') //Contains volume controls+info
             var controlWrapper = $('<div class="ctrlwrapper"></div>') //Contains Player controls
             var playlist = $("<ol class='playlist'></ol>");
@@ -75,7 +76,6 @@
                 updateVolumeText();
             });
 
-            //Click listeners
             muteButton.click(function () {
                 if(audioElem.muted) {
                     audioElem.muted = false;
