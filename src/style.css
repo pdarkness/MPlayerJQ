@@ -1,31 +1,69 @@
-.playButton {
-    border-top: 1px solid #96d1f8;
-    background: #65a9d7;
-    background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#65a9d7));
-    background: -webkit-linear-gradient(top, #3e779d, #65a9d7);
-    background: -moz-linear-gradient(top, #3e779d, #65a9d7);
-    background: -ms-linear-gradient(top, #3e779d, #65a9d7);
-    background: -o-linear-gradient(top, #3e779d, #65a9d7);
-    padding: 5px 10px;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    border-radius: 8px;
-    -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
-    -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
-    box-shadow: rgba(0,0,0,1) 0 1px 0;
-    text-shadow: rgba(0,0,0,.4) 0 1px 0;
-    color: white;
-    font-size: 14px;
-    font-family: Georgia, serif;
-    text-decoration: none;
-    vertical-align: middle;
+.awesomePlayer {
+    background-color:#333333;
+    width:300px;
+    padding-left:10px;
+    padding-top:1px;
+    padding-bottom:10px;
+    border-radius:10px;
+    margin-bottom:5px;
+    margin-top:5px;
 }
-.button:hover {
-    border-top-color: #28597a;
-    background: #28597a;
-    color: #ccc;
-}
-.button:active {
-    border-top-color: #1b435e;
-    background: #1b435e;
+
+.awesomePlayer button {
+    -moz-box-shadow:inset 0px 1px 0px 0px #fab3ad;
+    -webkit-box-shadow:inset 0px 1px 0px 0px #fab3ad;
+    box-shadow:inset 0px 1px 0px 0px #fab3ad;
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #fa665a), color-stop(1, #d34639) );
+    background:-moz-linear-gradient( center top, #fa665a 5%, #d34639 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fa665a', endColorstr='#d34639');
+    background-color:#fa665a;
+    -moz-border-radius:6px;
+    -webkit-border-radius:6px;
+    border-radius:6px;
+    border:1px solid #d83526;
+    display:inline-block;
+    color:#ffffff;
+    font-family:arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:2px 10px;
+    text-decoration:none;
+    text-shadow:1px 1px 0px #98231a;
+    width:40px;
+}.awesomePlayer button:hover {
+     background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #d34639), color-stop(1, #fa665a) );
+     background:-moz-linear-gradient( center top, #d34639 5%, #fa665a 100% );
+     filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#d34639', endColorstr='#fa665a');
+     background-color:#d34639;
+ }.awesomePlayer button:active {
+      position:relative;
+      top:1px;
+  }
+  .awesomePlayer p {
+      color:white;
+      font-weight:bold;
+      display: table-cell;
+  }
+  .awesomePlayer input[type=range] {
+      width:100px;
+      display:block;
+      position:relative;
+
+  }
+  .awesomePlayer ol {
+      color:white;
+      list-style-type: none;
+      cursor:pointer;
+
+      margin: 0;
+      padding: 0;
+
+  }
+  .awesomePlayer li.odd {
+
+      background-color:#222222;
+  }
+.awesomePlayer li:hover {
+    background-color:white;
+    color:black;
 }

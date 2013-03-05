@@ -12,23 +12,31 @@
             return this.each ( function( elem ){
                 //búa til html fyrir spilara
                 //hengja á html elementið sem við erum að vinna á
-                var player = $("<audio id='audioPlayer'><p>Sorry, your browser does not support this</p></audio>");
-                $(this).append( player );
 
 
-
-
-                var audioElem = document.getElementById("audioPlayer");
-                audioElem.volume = finalOptions.defaultVol;
-
+                $(this).addClass("awesomePlayer");
                 var songListIterator = 0;
-                audioElem.src = mySongList[songListIterator];
-
-                if(finalOptions.autoPlay === true)
+                var audioElem = new Audio(mySongList[songListIterator]);
+                var player = $(audioElem);
+                player.attr('volume',finalOptions.defaultVol);
+                var volume = Math.round(finalOptions.defaultVol*100);
+                $(this).append( audioElem );
+                var currentPlaying = $('<p></p>');
+                var volumeIndicator = $('<p class="vol"></p>');
+                var playlist = $("<ol class='playlist'></ol>");
+                refreshPlaylist();
+                if(finalOptions.autoPlay === true) {
                     $('#audioPlayer').prop('autoplay', true);
+                }
 
                 ///////  PLAY BUTTON /////////
-                var playButton = $("<button id='playButton' value='Play' >Play</button>");
+                nowPlaying();
+                $(this).append(volumeIndicator);
+
+                var volumebar = $('<input type="range" min="0" max="100" />');
+                $(this).append( volumebar );
+               // $(this).append(currentPlaying);
+                var playButton = $("<button class='playbutton' value='Play' >&#9658;</button>");
                 $(this).append( playButton );
                 playButton.click( function( ){
                     if (audioElem.paused == false) {
@@ -37,23 +45,28 @@
                         audioElem.play();
                     }
                 });
+                updateVolumeText();
 
 
+
+                player.bind('pause', function(){
+                    playButton.html("&#9658;");
+                });
+
+                player.bind('play', function(){
+                    playButton.html("||");
+                });
+
+                player.bind('ended', function(){
+                    playNext();
+                });
                 //////   VOLUME //////
-                var volumeButtonPlus = $("<button id='volumePlus' value='VolUp' >+</button>");
-                $(this).append( volumeButtonPlus );
 
-                var volumeButtonMinus = $("<button id='volumeMinus' value='VolDown' >-</button>");
-                $(this).append( volumeButtonMinus );
 
-                    volumeButtonMinus.click( function( ){
-                        if (audioElem.volume > 0.1)
-                        audioElem.volume -= 0.1;
-                    });
 
-                    volumeButtonPlus.click( function ( ){
-                        if (audioElem.volume < 0.9)
-                        audioElem.volume += 0.1;
+                volumebar.change( function ( ){
+                            audioElem.volume = this.value / 100;
+                            updateVolumeText();
                     });
 
 
@@ -62,27 +75,58 @@
 
 
                 player.on('timeupdate', function() {
-                    $('#progressBar').attr("value", this.currentTime / this.duration);
+                    progressBar.attr("value", this.currentTime / this.duration);
                    });
 
-                var nextSongButton = $("<button id='nextSong' value='next' >Next</button>");
-                    $(this).append(nextSongButton);
-                var lastSongButton = $("<button id='lastSong' value='last' >Last</button>");
+                var lastSongButton = $("<button class='lastSong' value='last' >&larr;</button>");
                     $(this).append(lastSongButton);
 
-                nextSongButton.click( function(){
-                    if(songListIterator < mySongList.length-1)
-                        songListIterator = songListIterator+1;
-                        $('#audioPlayer').prop('src', mySongList[songListIterator]);
-                        audioElem.play();
-                });
+                var nextSongButton = $("<button class='nextSong' value='next' >&rarr;</button>");
 
-                lastSongButton.click( function(){
-                   if(songListIterator >0)
-                        songListIterator = songListIterator-1;
-                        $('#audioPlayer').prop('src', mySongList[songListIterator]);
-                        audioElem.play();
+                $(this).append(playlist);
+                function playNext() {
+                    if(songListIterator < (mySongList.length-1) )
+                        songListIterator++;
+                    player.prop('src', mySongList[songListIterator]);
+                    audioElem.play();
+                }
+                function playPrev() {
+                    if(songListIterator >0)
+                        songListIterator--;
+                    player.prop('src', mySongList[songListIterator]);
+                    audioElem.play();
+                }
+                function nowPlaying(){
+                    currentPlaying.html(mySongList[songListIterator]);
+                }
+                function updateVolumeText(){
+                    volumeIndicator.html("&#9834;:" + volumebar.val() + "%");
+                }
+                $(this).append(nextSongButton);
+                nextSongButton.click( function(){
+                    playNext();
                 });
+                lastSongButton.click( function(){
+                   playPrev();
+                });
+                function createCallback( i ){
+                    return function(){
+                            songListIterator = song;
+                            player.prop('src', mySongList[i]);
+                            audioElem.play();
+                    }
+                }
+                function refreshPlaylist() {
+                    for(var song in mySongList) {
+                        var element = $('<li>' + mySongList[song]  + '</li>');
+                        element.click(createCallback(song));
+                        if( song % 2 != 0) {
+                            element.addClass('odd');
+                        }
+                        playlist.append(element);
+                    }
+                }
+                $(this).append(playlist);
             });
         }
 })(jQuery);
