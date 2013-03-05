@@ -64,7 +64,6 @@
 
             //Click listeners
             incVolume.click(function () {
-                console.log(audioElem.volume);
 
                 if (volume < 95) {
                     volume += 5;
@@ -88,7 +87,6 @@
             });
 
             decVolume.click(function () {
-                console.log(audioElem.volume);
 
                 if (volume > 0) {
                     volume -= 5;
