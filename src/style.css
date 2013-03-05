@@ -1,6 +1,6 @@
 .awesomePlayer {
     background-color:#333333;
-    width:300px;
+    width:290px;
     padding-left:10px;
     padding-top:1px;
     padding-bottom:10px;
@@ -10,6 +10,7 @@
 }
 
 .awesomePlayer button {
+    text-align: center;
     -moz-box-shadow:inset 0px 1px 0px 0px #fab3ad;
     -webkit-box-shadow:inset 0px 1px 0px 0px #fab3ad;
     box-shadow:inset 0px 1px 0px 0px #fab3ad;
@@ -43,6 +44,7 @@
       color:white;
       font-weight:bold;
       display: table-cell;
+      float:left;
   }
   .awesomePlayer input[type=range] {
       width:100px;
@@ -52,12 +54,16 @@
   }
   .awesomePlayer ol {
       color:white;
+      position:relative;
       list-style-type: none;
       cursor:pointer;
-
+      display:table;
       margin: 0;
       padding: 0;
-
+      margin-top:90px;
+      margin-left:10px;
+      width:90%;
+      border: 1px solid #444444;
   }
   .awesomePlayer li.odd {
 
@@ -71,4 +77,20 @@
 .awesomePlayer li:hover {
     background-color:white;
     color:black;
+}
+.awesomePlayer .volwrapper {
+    width:400px;
+}
+.awesomePlayer .volbutton {
+    margin-top:15px;
+    margin-left:3px;
+    float:right;
+    font-size:10px;
+    height:20px;
+    width:20px;
+    float:left;
+}
+
+.ctrlwrapper {
+    float:left;
 }
