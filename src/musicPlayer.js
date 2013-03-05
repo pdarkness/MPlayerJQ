@@ -109,9 +109,9 @@
                 lastSongButton.click( function(){
                    playPrev();
                 });
-                function createCallback( i ){
+                function playSong( i ){
                     return function(){
-                            songListIterator = song;
+                            songListIterator = i;
                             player.prop('src', mySongList[i]);
                             audioElem.play();
                     }
@@ -119,7 +119,7 @@
                 function refreshPlaylist() {
                     for(var song in mySongList) {
                         var element = $('<li>' + mySongList[song]  + '</li>');
-                        element.click(createCallback(song));
+                        element.click(playSong(song));
                         if( song % 2 != 0) {
                             element.addClass('odd');
                         }
