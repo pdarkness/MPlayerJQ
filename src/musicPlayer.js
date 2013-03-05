@@ -89,12 +89,14 @@
                         songListIterator++;
                     player.prop('src', mySongList[songListIterator]);
                     audioElem.play();
+                    refreshPlaylist();
                 }
                 function playPrev() {
                     if(songListIterator >0)
                         songListIterator--;
                     player.prop('src', mySongList[songListIterator]);
                     audioElem.play();
+                    refreshPlaylist();
                 }
                 function nowPlaying(){
                     currentPlaying.html(mySongList[songListIterator]);
@@ -117,9 +119,13 @@
                     }
                 }
                 function refreshPlaylist() {
+                    playlist.html("");
                     for(var song in mySongList) {
                         var element = $('<li>' + mySongList[song]  + '</li>');
                         element.click(playSong(song));
+                        if(song == songListIterator) {
+                            element.addClass('nowPlaying');
+                        }
                         if( song % 2 != 0) {
                             element.addClass('odd');
                         }

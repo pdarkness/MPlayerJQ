@@ -63,6 +63,11 @@
 
       background-color:#222222;
   }
+
+.awesomePlayer li.nowPlaying {
+    color:black;
+    background-color:#999999;
+}
 .awesomePlayer li:hover {
     background-color:white;
     color:black;
