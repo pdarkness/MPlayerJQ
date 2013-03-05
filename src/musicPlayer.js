@@ -73,6 +73,9 @@
                 var progressBar = $("<progress id='progressBar' value='0' max='1' ></progress>");
                 $(this).append(progressBar);
 
+                audioElem.addEventListener("ended", function() {
+
+                })
 
                 player.on('timeupdate', function() {
                     progressBar.attr("value", this.currentTime / this.duration);
