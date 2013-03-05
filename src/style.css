@@ -27,7 +27,7 @@
     font-family:arial;
     font-size:15px;
     font-weight:bold;
-    padding:2px 10px;
+    padding:0px;
     text-decoration:none;
     text-shadow:1px 1px 0px #98231a;
     width:40px;
@@ -40,17 +40,17 @@
       position:relative;
       top:1px;
   }
+  .awesomePlayer .activeButton {
+      background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #d34639), color-stop(1, #fa665a) );
+      background:-moz-linear-gradient( center top, #d34639 5%, #fa665a 100% );
+      filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#d34639', endColorstr='#fa665a');
+      background-color:#d34639;
+  }
   .awesomePlayer p {
       color:white;
       font-weight:bold;
       display: table-cell;
       float:left;
-  }
-  .awesomePlayer input[type=range] {
-      width:100px;
-      display:block;
-      position:relative;
-
   }
   .awesomePlayer ol {
       color:white;

@@ -27,6 +27,7 @@
             var volumeIndicator = $('<p class="vol"></p>');
             var incVolume = $("<button class='volbutton' value='+' >&uarr;</button>");
             var decVolume = $("<button class='volbutton' value='-' >&darr;</button>");
+            var muteButton = $("<button class='volbutton' value='-' >M</button>");
 
             //Control elements
             var playButton = $("<button class='playbutton' value='Play' >&#9658;</button>");
@@ -35,7 +36,7 @@
             var nextSongButton = $("<button class='nextSong' value='next' >&rarr;</button>");
 
             //Init
-            $(audioElem).attr('volume', finalOptions.defaultVol); //init volume
+            audioElem.volume = finalOptions.defaultVol; //init volume
             refreshPlaylist();
             updateVolumeText();
             if (finalOptions.autoPlay === true) {
@@ -52,6 +53,7 @@
             volumeWrapper.append(volumeIndicator);
             volumeWrapper.append(decVolume);
             volumeWrapper.append(incVolume);
+            volumeWrapper.append(muteButton);
 
             //Add player control elements
             controlWrapper.append(playButton);
@@ -61,6 +63,8 @@
 
             //Click listeners
             incVolume.click(function () {
+                console.log(audioElem.volume);
+
                 if (volume < 95) {
                     volume += 5;
                     audioElem.volume = volume / 100;
@@ -71,7 +75,21 @@
                 updateVolumeText();
             });
 
+            //Click listeners
+            muteButton.click(function () {
+                if(audioElem.muted) {
+                    audioElem.muted = false;
+                    muteButton.removeClass("activeButton");
+                }
+                else {
+                audioElem.muted = true;
+                muteButton.addClass("activeButton");
+                }
+            });
+
             decVolume.click(function () {
+                console.log(audioElem.volume);
+
                 if (volume > 0) {
                     volume -= 5;
                     audioElem.volume = volume / 100;
